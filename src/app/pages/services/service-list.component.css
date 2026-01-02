@@ -1,0 +1,43 @@
+.services {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 16px;
+}
+
+.card {
+  border: 1px solid #ddd;
+  padding: 16px;
+  border-radius: 12px;
+  background: #fff;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  }
+
+  img {
+    width: 100%;
+    border-radius: 8px;
+    margin-bottom: 10px;
+  }
+
+  h3 {
+    margin: 8px 0;
+  }
+
+  .category {
+    font-weight: bold;
+    color: #666;
+  }
+
+  .description {
+    font-size: 14px;
+    margin: 6px 0;
+  }
+
+  .phone {
+    font-size: 13px;
+    color: #333;
+  }
+}
