@@ -1,44 +1,29 @@
-<div class="services-container p-4">
-  <h2 class="text-2xl font-bold mb-4">Services List</h2>
-
-  <!-- Search Input -->
-  <div class="mb-6">
-    <input
-      type="text"
-      placeholder="Search services..."
-      [(ngModel)]="searchTerm"
-      (input)="onSearchChange()"
-      class="border p-2 rounded w-full"
-    />
-  </div>
-
-  <!-- Services Cards -->
-  <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-    <div
-      *ngFor="let service of filteredServices; trackBy: trackById"
-      class="bg-white shadow-md rounded-lg overflow-hidden hover:shadow-xl transition-shadow"
-    >
-      <!-- Image -->
-      <div class="h-48 w-full overflow-hidden">
-        <img
-          [src]="service.image || 'https://via.placeholder.com/300x200?text=No+Image'"
-          alt="{{ service.title }}"
-          class="w-full h-full object-cover"
-        />
-      </div>
-
-      <!-- Content -->
-      <div class="p-4">
-        <h3 class="text-xl font-semibold mb-2">{{ service.title }}</h3>
-        <p class="text-gray-600 mb-1"><strong>Category:</strong> {{ service.category }}</p>
-        <!-- <p class="text-gray-600 mb-1"><strong>Price:</strong> {{ service.price | currency }}</p> -->
-        <p class="text-gray-600"><strong>Description:</strong> {{ service.description || '---' }}</p>
-      </div>
+<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+  <a
+    *ngFor="let service of filteredServices; trackBy: trackById"
+    [routerLink]="['/services', service.id]"
+    class="block bg-white shadow-md rounded-lg overflow-hidden hover:shadow-xl transition-shadow"
+  >
+    <!-- Image -->
+    <div class="h-48 w-full overflow-hidden">
+      <img
+        [src]="service.image || 'https://via.placeholder.com/300x200?text=No+Image'"
+        alt="{{ service.title }}"
+        class="w-full h-full object-cover"
+      />
     </div>
 
-    <!-- Empty state -->
-    <div *ngIf="filteredServices.length === 0" class="col-span-full text-center text-gray-500">
-      No services found.
+    <!-- Content -->
+    <div class="p-4">
+      <h3 class="text-xl font-semibold mb-2">{{ service.title }}</h3>
+      <p class="text-gray-600 mb-1"><strong>Category:</strong> {{ service.category }}</p>
+      <!-- <p class="text-gray-600 mb-1"><strong>Price:</strong> {{ service.price | currency }}</p> -->
+      <p class="text-gray-600"><strong>Description:</strong> {{ service.description || '---' }}</p>
     </div>
+  </a>
+
+  <!-- Empty state -->
+  <div *ngIf="filteredServices.length === 0" class="col-span-full text-center text-gray-500">
+    No services found.
   </div>
 </div>
