@@ -1,42 +1,43 @@
 <!-- Search bar -->
 <div class="mb-8 flex justify-center">
-  <input
-    type="text"
-    placeholder="Search services..."
-    (input)="searchTerm.set($any($event.target).value)"
-    class="w-full sm:w-2/3 md:w-1/2 px-4 py-3 border rounded-xl shadow-sm
-           focus:outline-none focus:ring-2 focus:ring-orange-500"
-  />
+  <input type="text" placeholder="Search services..." (input)="searchTerm.set($any($event.target).value)" class="w-full sm:w-2/3 md:w-1/2 px-4 py-3 border rounded-xl shadow-sm
+           focus:outline-none focus:ring-2 focus:ring-orange-500" />
 </div>
 
-<!-- Services grid -->
-<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+<!-- Category filters -->
+<div class="mb-8 flex justify-center gap-3 flex-wrap">
+  <!-- your category buttons here -->
+</div>
 
-  <a
-    *ngFor="let service of filteredServices(); trackBy: trackById"
-    [routerLink]="['/services', service.id]"
-    class="block bg-white shadow-md rounded-lg overflow-hidden
-           hover:shadow-xl transition-shadow cursor-pointer"
-  >
+<!-- 🦴 Skeleton loading -->
+<div *ngIf="isLoading()" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+  <div *ngFor="let _ of [1,2,3,4,5,6]" class="bg-white rounded-lg shadow-md overflow-hidden animate-pulse">
+    <div class="h-48 bg-gray-300"></div>
+    <div class="p-4 space-y-3">
+      <div class="h-5 bg-gray-300 rounded w-3/4"></div>
+      <div class="h-4 bg-gray-200 rounded w-1/2"></div>
+      <div class="h-4 bg-gray-200 rounded w-full"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ✅ REAL SERVICES GRID (THIS IS WHERE IT GOES) -->
+<div *ngIf="!isLoading()" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+
+  <a *ngFor="let service of filteredServices(); trackBy: trackById" [routerLink]="['/services', service.id]" class="block bg-white shadow-md rounded-lg overflow-hidden
+           hover:shadow-xl transition-shadow cursor-pointer">
     <!-- Image -->
     <div class="h-48 w-full overflow-hidden">
-      <img
-        [src]="service.image || 'https://via.placeholder.com/300x200?text=No+Image'"
-        alt="{{ service.title }}"
-        class="w-full h-full object-cover"
-      />
+      <img [src]="service.image || 'https://via.placeholder.com/300x200?text=No+Image'" alt="{{ service.title }}"
+        class="w-full h-full object-cover" />
     </div>
 
     <!-- Content -->
     <div class="p-4">
-      <h3 class="text-xl font-semibold mb-2">
-        {{ service.title }}
-      </h3>
-
+      <h3 class="text-xl font-semibold mb-2">{{ service.title }}</h3>
       <p class="text-gray-600 mb-1">
         <strong>Category:</strong> {{ service.category }}
       </p>
-
       <p class="text-gray-600">
         <strong>Description:</strong> {{ service.description || '---' }}
       </p>
@@ -44,10 +45,7 @@
   </a>
 
   <!-- Empty state -->
-  <div
-    *ngIf="filteredServices().length === 0"
-    class="col-span-full text-center text-gray-500 text-lg"
-  >
+  <div *ngIf="filteredServices().length === 0" class="col-span-full text-center text-gray-500 text-lg">
     No services found.
   </div>
 
