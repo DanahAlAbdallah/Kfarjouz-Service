@@ -1,8 +1,22 @@
+<!-- Search bar -->
+<div class="mb-8 flex justify-center">
+  <input
+    type="text"
+    placeholder="Search services..."
+    (input)="searchTerm.set($any($event.target).value)"
+    class="w-full sm:w-2/3 md:w-1/2 px-4 py-3 border rounded-xl shadow-sm
+           focus:outline-none focus:ring-2 focus:ring-orange-500"
+  />
+</div>
+
+<!-- Services grid -->
 <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+
   <a
-    *ngFor="let service of filteredServices; trackBy: trackById"
+    *ngFor="let service of filteredServices(); trackBy: trackById"
     [routerLink]="['/services', service.id]"
-    class="block bg-white shadow-md rounded-lg overflow-hidden hover:shadow-xl transition-shadow"
+    class="block bg-white shadow-md rounded-lg overflow-hidden
+           hover:shadow-xl transition-shadow cursor-pointer"
   >
     <!-- Image -->
     <div class="h-48 w-full overflow-hidden">
@@ -15,15 +29,26 @@
 
     <!-- Content -->
     <div class="p-4">
-      <h3 class="text-xl font-semibold mb-2">{{ service.title }}</h3>
-      <p class="text-gray-600 mb-1"><strong>Category:</strong> {{ service.category }}</p>
-      <!-- <p class="text-gray-600 mb-1"><strong>Price:</strong> {{ service.price | currency }}</p> -->
-      <p class="text-gray-600"><strong>Description:</strong> {{ service.description || '---' }}</p>
+      <h3 class="text-xl font-semibold mb-2">
+        {{ service.title }}
+      </h3>
+
+      <p class="text-gray-600 mb-1">
+        <strong>Category:</strong> {{ service.category }}
+      </p>
+
+      <p class="text-gray-600">
+        <strong>Description:</strong> {{ service.description || '---' }}
+      </p>
     </div>
   </a>
 
   <!-- Empty state -->
-  <div *ngIf="filteredServices.length === 0" class="col-span-full text-center text-gray-500">
+  <div
+    *ngIf="filteredServices().length === 0"
+    class="col-span-full text-center text-gray-500 text-lg"
+  >
     No services found.
   </div>
+
 </div>

@@ -1,7 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, computed, OnInit, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-import { FormsModule } from '@angular/forms'; // For ngModel
 import { ServicesService } from '../../services/service.service';
 import { servicesSignal } from '../../signals/services.signal';
 import { Service } from '../../models/service.model';
@@ -9,32 +8,34 @@ import { Service } from '../../models/service.model';
 @Component({
   selector: 'app-services-list',
   standalone: true,
-  imports: [CommonModule, RouterModule, FormsModule],
+  imports: [CommonModule, RouterModule],
   templateUrl: './service-list.component.html',
-  styleUrls: ['./service-list.component.css'], // corrected
+  styleUrls: ['./service-list.component.css'],
 })
 export class ServicesListComponent implements OnInit {
-  servicesSignal = servicesSignal;
-  searchTerm: string = ''; // For search input
-  filteredServices: Service[] = [];
 
   constructor(private servicesService: ServicesService) {}
+
+  // 🔍 search input state
+  searchTerm = signal('');
 
   ngOnInit() {
     const allServices = this.servicesService.getAll();
     servicesSignal.set(allServices);
-    this.filteredServices = allServices;
   }
+
+  // ✅ filtered services (reactive)
+  filteredServices = computed(() => {
+    const query = this.searchTerm().toLowerCase().trim();
+
+    return servicesSignal().filter(service =>
+      service.title.toLowerCase().includes(query) ||
+      service.category.toLowerCase().includes(query) ||
+      (service.description ?? '').toLowerCase().includes(query)
+    );
+  });
 
   trackById(_: number, service: Service) {
     return service.id;
-  }
-
-  onSearchChange() {
-    const query = this.searchTerm.toLowerCase().trim();
-    const allServices = this.servicesSignal();
-    this.filteredServices = allServices.filter(service =>
-      service.title.toLowerCase().includes(query)
-    );
   }
 }
