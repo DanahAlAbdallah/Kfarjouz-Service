@@ -2,3 +2,16 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+:root {
+  --primary-orange: #F97316;
+  --dark-orange: #EA580C;
+  --light-orange: #FFEDD5;
+
+  --white: #FFFFFF;
+  --soft-gray: #F9FAFB;
+  --dark-text: #111827;
+  --muted-text: #6B7280;
+  --border-gray: #E5E7EB;
+}
