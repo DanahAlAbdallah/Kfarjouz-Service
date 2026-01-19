@@ -1,8 +1,7 @@
-<header class="flex gap-6 p-4 shadow">
-  <a routerLink="/" class="font-bold">Kfarjouz</a>
-  <a routerLink="/services">Services</a>
-</header>
+<app-header></app-header>  <!-- Use the shared header -->
 
 <main class="p-6">
   <router-outlet></router-outlet>
 </main>
+
+<app-footer></app-footer> <!-- optional shared footer -->
