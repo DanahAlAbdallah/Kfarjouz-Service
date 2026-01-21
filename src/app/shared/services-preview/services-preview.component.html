@@ -1,31 +1,85 @@
-<section class="bg-white py-20">
+<section class="bg-white py-24">
   <div class="max-w-7xl mx-auto px-6">
 
-    <div class="text-center mb-12">
-      <h2 class="text-3xl font-bold text-gray-900">Our Services</h2>
-      <p class="text-orange-500 mt-2">What We Offer</p>
+    <!-- Section header -->
+    <div class="text-center mb-16">
+      <h2 class="text-3xl md:text-4xl font-bold text-gray-900">
+        Our Services
+      </h2>
+      <p class="text-orange-500 mt-2 font-medium">
+        What We Offer
+      </p>
     </div>
 
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-      <div
-        *ngFor="let s of services"
-        class="bg-[#FFF7ED] rounded-xl p-8 text-center shadow hover:shadow-lg transition"
-      >
-        <div class="w-20 h-20 mx-auto mb-6 rounded-full bg-orange-100 flex items-center justify-center text-3xl">
-          {{ s.icon }}
+    <!-- Cards -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+
+      <!-- Card 1: Food & Restaurants -->
+      <div class="bg-[#FFF7ED] rounded-2xl p-8 text-center shadow-sm hover:shadow-lg transition">
+        <div class="w-24 h-24 mx-auto mb-6 rounded-full bg-orange-100 flex items-center justify-center">
+          <img src="assets/icons/food.svg" alt="Food" class="w-12 h-12">
         </div>
 
-        <h3 class="text-xl font-semibold mb-3">{{ s.title }}</h3>
-        <p class="text-gray-600 mb-6">{{ s.desc }}</p>
+        <h3 class="text-xl font-semibold mb-3">
+          Food & Restaurants
+        </h3>
+
+        <p class="text-gray-600 mb-8">
+          Discover local restaurants, cafés, bakeries, and food services around you.
+        </p>
 
         <button
-          routerLink="/services"
-          class="bg-orange-500 text-white px-5 py-2 rounded-md hover:bg-orange-600 transition"
+          routerLink="/services/food"
+          class="bg-orange-500 text-white px-6 py-3 rounded-md hover:bg-orange-600 transition"
         >
           Learn More
         </button>
       </div>
-    </div>
 
+      <!-- Card 2: Home Services -->
+      <div class="bg-[#FFF7ED] rounded-2xl p-8 text-center shadow-sm hover:shadow-lg transition">
+        <div class="w-24 h-24 mx-auto mb-6 rounded-full bg-orange-100 flex items-center justify-center">
+          <img src="assets/icons/home-service.svg" alt="Home Services" class="w-12 h-12">
+        </div>
+
+        <h3 class="text-xl font-semibold mb-3">
+          Home Services
+        </h3>
+
+        <p class="text-gray-600 mb-8">
+          Reliable home services including plumbing, electricity, cleaning, and maintenance.
+        </p>
+
+        <button
+          routerLink="/services/home"
+          class="bg-orange-500 text-white px-6 py-3 rounded-md hover:bg-orange-600 transition"
+        >
+          Learn More
+        </button>
+      </div>
+
+      <!-- Card 3: Local Services -->
+      <div class="bg-[#FFF7ED] rounded-2xl p-8 text-center shadow-sm hover:shadow-lg transition">
+        <div class="w-24 h-24 mx-auto mb-6 rounded-full bg-orange-100 flex items-center justify-center">
+          <img src="assets/icons/local-services.svg" alt="Local Services" class="w-12 h-12">
+        </div>
+
+        <h3 class="text-xl font-semibold mb-3">
+          Local Services
+        </h3>
+
+        <p class="text-gray-600 mb-8">
+          Access essential local services like pharmacies, shops, gyms, and more.
+        </p>
+
+        <button
+          routerLink="/services/local"
+          class="bg-orange-500 text-white px-6 py-3 rounded-md hover:bg-orange-600 transition"
+        >
+          Learn More
+        </button>
+      </div>
+
+    </div>
   </div>
 </section>
