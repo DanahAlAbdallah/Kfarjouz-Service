@@ -1,83 +1,43 @@
-import { Component, computed, signal, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterModule, Router } from '@angular/router';
-import { ServicesService } from '../../services/service.service';
-import { servicesSignal } from '../../signals/services.signal';
-import { Service } from '../../models/service.model';
-import { PaginationComponent } from '../../shared/pagination/pagination.component';
-import { FormsModule } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
+
+interface Service {
+  id: number;
+  name: string;
+  category: string;
+  type: string;
+  location: string;
+}
 
 @Component({
   selector: 'app-services-list',
   standalone: true,
-  imports: [CommonModule, RouterModule, PaginationComponent,FormsModule],
+  imports: [CommonModule],
   templateUrl: './service-list.component.html',
-  styleUrls: ['./service-list.component.css'],
 })
 export class ServicesListComponent implements OnInit {
-  constructor(private servicesService: ServicesService, private router: Router) {}
+  services: Service[] = [
+    { id: 1, name: 'Pizza House', category: 'food', type: 'Restaurant', location: 'Kfarjouz' },
+    { id: 2, name: 'Golden Bakery', category: 'food', type: 'Bakery', location: 'Kfarjouz' },
+    { id: 3, name: 'City Café', category: 'food', type: 'Café', location: 'Kfarjouz' },
+    { id: 4, name: 'Fix It Pro', category: 'home', type: 'Plumber', location: 'Kfarjouz' },
+    { id: 5, name: 'Bright Electric', category: 'home', type: 'Electrician', location: 'Kfarjouz' },
+  ];
 
-  // 🔹 Search input
-  searchTerm = signal('');
+  filteredServices: Service[] = [];
+  selectedCategory: string = 'all';
 
-  // 🔹 Selected category: 'all' | 'Restaurant' | 'Teacher'
-  selectedCategory = signal<'all' | 'Restaurant' | 'Teacher'>('all');
+  constructor(private route: ActivatedRoute) {}
 
-  // 🔹 Loading state
-  isLoading = signal(true);
+  ngOnInit(): void {
+    this.route.queryParams.subscribe(params => {
+      this.selectedCategory = params['category'] || 'all';
 
-  // 🔹 Pagination signals
-  currentPage = signal(1);
-  itemsPerPage = signal(6);
-
-  ngOnInit() {
-    this.isLoading.set(true);
-
-    // Fetch all services (replace with real API)
-    setTimeout(() => {
-      const allServices = this.servicesService.getAll();
-      servicesSignal.set(allServices);
-      this.isLoading.set(false);
-    }, 500);
-  }
-
-  // 🔹 Filtered services based on search & category
-  filteredServices = computed(() => {
-    const query = this.searchTerm().toLowerCase().trim();
-    const category = this.selectedCategory();
-
-    return servicesSignal().filter((service: Service) => {
-      const matchesSearch =
-        service.title.toLowerCase().includes(query) ||
-        service.category.toLowerCase().includes(query) ||
-        (service.description ?? '').toLowerCase().includes(query);
-
-      const matchesCategory = category === 'all' || service.category === category;
-
-      return matchesSearch && matchesCategory;
+      this.filteredServices =
+        this.selectedCategory === 'all'
+          ? this.services
+          : this.services.filter(service => service.category === this.selectedCategory);
     });
-  });
-
-  // 🔹 Paginated displayed services
-  displayedServices = computed(() => {
-    const filtered = this.filteredServices();
-    const start = (this.currentPage() - 1) * this.itemsPerPage();
-    const end = start + this.itemsPerPage();
-    return filtered.slice(start, end);
-  });
-
-  // 🔹 Navigate to service details
-  goToServiceDetails(id: string) {
-    this.router.navigate(['/services', id]);
-  }
-
-  // 🔹 Handle page change from pagination component
-  onPageChange(page: number) {
-    this.currentPage.set(page);
-  }
-
-  // 🔹 trackBy for ngFor
-  trackById(_: number, service: Service) {
-    return service.id;
   }
 }

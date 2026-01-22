@@ -1,62 +1,10 @@
-<div class="max-w-7xl mx-auto px-4 py-8">
-  <!-- Search & Category Filter -->
-  <div class="flex flex-col md:flex-row md:items-center md:justify-between mb-6 gap-4">
-    <!-- Search Input -->
-    <input
-      type="text"
-      placeholder="Search services..."
-      class="border p-2 rounded w-full md:w-1/2"
-      [ngModel]="searchTerm()"
-      (ngModelChange)="searchTerm.set($event); currentPage.set(1)"
-    />
+<!-- <h1 class="text-3xl font-bold mb-8 capitalize">
+  {{ selectedCategory !== 'all' ? selectedCategory : 'All' }} Services
+</h1> -->
 
-    <!-- Category Dropdown -->
-    <select
-      class="border p-2 rounded w-full md:w-1/4"
-      [ngModel]="selectedCategory()"
-      (ngModelChange)="selectedCategory.set($event); currentPage.set(1)"
-    >
-      <option value="all">All</option>
-      <option value="Restaurant">Restaurant</option>
-      <option value="Teacher">Teacher</option>
-    </select>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+  <div *ngFor="let service of filteredServices" class="bg-white rounded-xl p-6 shadow-sm hover:shadow-lg transition">
+    <h3 class="text-lg font-semibold mb-1">{{ service.name }}</h3>
+    <p class="text-sm text-gray-500">{{ service.type }} · {{ service.location }}</p>
   </div>
-
-  <!-- Loading State -->
-  <div *ngIf="isLoading()" class="text-center py-10 text-gray-500">
-    Loading services...
-  </div>
-
-  <!-- Services Grid -->
-  <div *ngIf="!isLoading()" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-    <div
-      *ngFor="let service of displayedServices(); trackBy: trackById"
-      class="bg-white rounded-lg shadow hover:shadow-lg cursor-pointer transition transform hover:scale-105"
-      (click)="goToServiceDetails(service.id)"
-    >
-      <img
-        [src]="service.image"
-        alt="{{ service.title }}"
-        class="h-48 w-full object-cover rounded-t-lg"
-      />
-      <div class="p-4">
-        <h2 class="font-bold text-lg">{{ service.title }}</h2>
-        <p class="text-gray-600 mt-2">{{ service.description }}</p>
-      </div>
-    </div>
-  </div>
-
-  <!-- No Services Found -->
-  <div *ngIf="!isLoading() && filteredServices().length === 0" class="text-center py-10 text-gray-500">
-    No services found.
-  </div>
-
-  <!-- Pagination -->
-  <app-pagination
-    *ngIf="!isLoading() && filteredServices().length > itemsPerPage()"
-    [totalItems]="filteredServices().length"
-    [itemsPerPage]="itemsPerPage()"
-    [currentPage]="currentPage()"
-    (pageChange)="onPageChange($event)"
-  ></app-pagination>
 </div>
