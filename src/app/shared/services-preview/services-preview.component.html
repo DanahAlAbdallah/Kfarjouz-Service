@@ -56,14 +56,21 @@
     </div>
 
     <!-- Card -->
-    <div class="bg-[#FFF7ED] rounded-2xl p-6 text-center shadow-sm hover:shadow-lg transition">
-      <div class="w-14 h-14 mx-auto mb-4 rounded-full bg-[#F97316] flex items-center justify-center">
-        <img src="assets/icons/food.svg" alt="" class="w-7 h-7 invert">
-      </div>
-      <p class="font-medium text-gray-800 text-sm">
-        Food and drink
-      </p>
-    </div>
+<div
+  routerLink="/services"
+  [queryParams]="{ category: 'food' }"
+  class="bg-[#FFF7ED] rounded-2xl p-6 text-center shadow-sm
+         hover:shadow-lg hover:-translate-y-1 transition cursor-pointer"
+>
+  <div class="w-14 h-14 mx-auto mb-4 rounded-full bg-[#F97316] flex items-center justify-center">
+    <img src="assets/icons/food.svg" class="w-7 h-7 invert" />
+  </div>
+
+  <p class="font-medium text-gray-800 text-sm">
+    Food & Drink
+  </p>
+</div>
+
 
   </div>
 </section>
