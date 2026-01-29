@@ -1,6 +1,8 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, computed, OnInit, signal } from '@angular/core';
 import { RouterModule } from '@angular/router';
+import { SearchService } from '../../services/search-service';
+import { Service } from '../../models/service.model';
 
 @Component({
   selector: 'app-services-preview',
@@ -8,9 +10,9 @@ import { RouterModule } from '@angular/router';
   imports: [CommonModule,RouterModule], 
   templateUrl: './services-preview.component.html'
 })
-export class ServicesPreviewComponent {
+export class ServicesPreviewComponent implements OnInit{
 
-  services = [
+ services = signal<Service[]>([
     {
       title: 'Public professions and services',
       icon: 'assets/icons/building.svg',
@@ -23,8 +25,7 @@ export class ServicesPreviewComponent {
     },
     {
       title: 'Cars and bikes',
-      icon: 'assets/icons/car'
-      ,
+      icon: 'assets/icons/car',
       category: 'vehicle'
     },
     {
@@ -37,5 +38,22 @@ export class ServicesPreviewComponent {
       icon: 'assets/icons/food.svg',
       category: 'food'
     }
-  ];
+  ]);
+  
+  filteredServices = computed(() =>
+  this.services().filter(service =>
+    this.searchService.searchQuery()
+      ? service.title.toLowerCase().includes(this.searchService.searchQuery().toLowerCase()) ||
+        (service.category.toLowerCase().includes(this.searchService.searchQuery().toLowerCase())) ||
+        (service.city?.toLowerCase() ?? '').includes(this.searchService.searchQuery().toLowerCase())
+      : true
+  )
+
+);
+
+
+  constructor(private searchService: SearchService) {}
+
+  ngOnInit(): void {
+  }
 }
