@@ -16,7 +16,7 @@
 
       <!-- Card -->
       <div
-        *ngFor="let service of services"
+        *ngFor="let service of services()"
         routerLink="/services"
         [queryParams]="{ category: service.category }"
         class="bg-[#FFF7ED] rounded-2xl p-6 text-center shadow-sm

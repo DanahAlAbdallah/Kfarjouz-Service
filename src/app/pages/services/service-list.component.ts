@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
+import { SearchBarComponent } from '../../shared/search-bar/search-bar.component';
 
 interface Service {
   id: number;
@@ -13,7 +14,7 @@ interface Service {
 @Component({
   selector: 'app-services-list',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule,SearchBarComponent],
   templateUrl: './service-list.component.html',
 })
 export class ServicesListComponent implements OnInit {
