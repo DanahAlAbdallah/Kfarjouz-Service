@@ -15,22 +15,22 @@ export class ServicesPreviewComponent implements OnInit{
  services = signal<Service[]>([
     {
       title: 'Public professions and services',
-      icon: 'assets/icons/building.svg',
+      icon: 'assets/icons/food.svg',
       category: 'public'
     },
     {
       title: 'Shops',
-      icon: 'assets/icons/shop.svg',
+      icon: 'assets/icons/food.svg',
       category: 'shop'
     },
     {
       title: 'Cars and bikes',
-      icon: 'assets/icons/car',
+      icon: 'assets/icons/food.svg',
       category: 'vehicle'
     },
     {
       title: 'Home construction & maintenance',
-      icon: 'assets/icons/tools.svg',
+      icon: 'assets/icons/food.svg',
       category: 'home'
     },
     {
