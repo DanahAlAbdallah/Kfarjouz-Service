@@ -18,17 +18,15 @@
       </p>
 
       <div class="flex gap-4">
-        <button
-          routerLink="/services"
-          class="bg-orange-500 text-white px-6 py-3 rounded-md font-semibold hover:bg-orange-600 transition"
-        >
+        <button (click)="scrollToServices.emit()"
+          class="bg-orange-500 text-white px-6 py-3 rounded-md font-semibold hover:bg-orange-600 transition">
           Explore Services
         </button>
 
-        <button
-          routerLink="/contact"
-          class="border border-orange-500 text-orange-500 px-6 py-3 rounded-md font-semibold hover:bg-orange-100 transition"
-        >
+
+
+        <button routerLink="/contact"
+          class="border border-orange-500 text-orange-500 px-6 py-3 rounded-md font-semibold hover:bg-orange-100 transition">
           Contact Us
         </button>
       </div>
@@ -36,11 +34,7 @@
 
     <!-- Right image -->
     <div class="flex justify-center">
-      <img
-        src="assets/GIF/Location-Search4.gif"
-        alt="Local services illustration"
-        class="max-w-md w-full"
-      />
+      <img src="assets/GIF/Location-Search4.gif" alt="Local services illustration" class="max-w-md w-full" />
     </div>
 
   </div>
