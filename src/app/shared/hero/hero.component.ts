@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { ServicesPreviewComponent } from "../services-preview/services-preview.component";
 import { CtaComponent } from "../cta/cta.component";
 
@@ -9,5 +9,6 @@ import { CtaComponent } from "../cta/cta.component";
   styleUrl: './hero.component.css',
 })
 export class HeroComponent {
+@Output() scrollToServices = new EventEmitter<void>();
 
 }

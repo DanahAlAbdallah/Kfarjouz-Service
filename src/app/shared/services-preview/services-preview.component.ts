@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, computed, OnInit, signal } from '@angular/core';
+import { Component, computed, ElementRef, OnInit, signal, ViewChild } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { SearchService } from '../../services/search-service';
 import { Service } from '../../models/service.model';
@@ -39,6 +39,13 @@ export class ServicesPreviewComponent implements OnInit{
       category: 'food'
     }
   ]);
+
+  @ViewChild('servicesSection') section!: ElementRef;
+
+scrollIntoView() {
+  this.section.nativeElement.scrollIntoView({ behavior: 'smooth' });
+}
+
   
   filteredServices = computed(() =>
   this.services().filter(service =>
@@ -48,10 +55,7 @@ export class ServicesPreviewComponent implements OnInit{
         (service.city?.toLowerCase() ?? '').includes(this.searchService.searchQuery().toLowerCase())
       : true
   )
-
 );
-
-
   constructor(private searchService: SearchService) {}
 
   ngOnInit(): void {

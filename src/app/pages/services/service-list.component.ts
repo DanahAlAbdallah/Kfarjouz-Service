@@ -80,7 +80,6 @@ services: Service[] = [
   { id: 50, name: 'Post Express', category: 'public', type: 'Courier Service', location: 'Kfarjouz' }
 ];
 
-
   filteredServices: Service[] = [];
   selectedCategory: string = 'all';
 
