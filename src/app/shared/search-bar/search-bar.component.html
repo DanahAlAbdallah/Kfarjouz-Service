@@ -1,19 +1,19 @@
-<div class="w-full flex justify-center mt-8">
-  <div
-    class="flex w-full max-w-xl items-center rounded-full bg-white shadow-md border border-orange-100 overflow-hidden"
-  >
+<div class="w-full flex justify-center mt-8 px-4">
+  <div class="flex w-full max-w-xl overflow-hidden rounded-3xl shadow-lg border border-gray-200">
+    
     <!-- Input -->
     <input
       type="text"
-      placeholder="Search for services..."
-      class="flex-1 px-6 py-4 text-sm outline-none bg-transparent placeholder-gray-400"
-      [value]="searchService.searchQuery()"
-      (input)="searchService.searchQuery.set($any($event.target).value)"
+      [value]="searchText()"
+      (input)="searchText.set($any($event.target).value)"
+      placeholder="Search for products, services..."
+      class="flex-1 px-5 py-3 text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-transparent transition"
     />
 
-    <!-- Button -->
+    <!-- Search Button -->
     <button
-      class="flex items-center justify-center px-6 py-4 bg-[#F97316] hover:bg-orange-600 transition"
+      class="flex items-center justify-center px-5 bg-orange-500 hover:bg-orange-600 transition-colors duration-200 rounded-r-3xl"
+      aria-label="Search"
     >
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -30,5 +30,6 @@
         />
       </svg>
     </button>
+
   </div>
 </div>

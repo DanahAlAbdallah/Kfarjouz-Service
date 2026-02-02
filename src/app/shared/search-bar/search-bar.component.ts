@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output, WritableSignal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SearchService } from '../../services/search-service';
 
@@ -10,4 +10,5 @@ import { SearchService } from '../../services/search-service';
 })
 export class SearchBarComponent {
   constructor(public searchService: SearchService) {}
+      @Input() searchText!: WritableSignal<string>;
 }
