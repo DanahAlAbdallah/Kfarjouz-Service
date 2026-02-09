@@ -5,7 +5,7 @@ import { SearchBarComponent } from '../../shared/search-bar/search-bar.component
 
 @Component({
   selector: 'app-home',
-  imports: [ServicesPreviewComponent, HeroComponent, SearchBarComponent],
+  imports: [ServicesPreviewComponent, HeroComponent],
   standalone: true,
   templateUrl: './home.component.html',
   styleUrl: './home.component.css',
