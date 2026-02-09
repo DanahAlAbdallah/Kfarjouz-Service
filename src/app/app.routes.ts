@@ -3,6 +3,7 @@ import { MainLayoutComponent } from './layouts/main-layout/main-layout.component
 import { ServicesListComponent } from './pages/services/service-list.component';
 import { ServiceDetailsComponent } from './pages/services/service-details/service-details.component';
 import { HomeComponent } from './pages/home/home.component';
+import { ContactUsComponent } from './pages/contact-us/contact-us.component';
 
 export const routes: Routes = [
   {
@@ -19,6 +20,7 @@ export const routes: Routes = [
       // Service details
       { path: 'services/:id', component: ServiceDetailsComponent },
 
+      { path: 'contact', component: ContactUsComponent },
     ]
   }
 ];

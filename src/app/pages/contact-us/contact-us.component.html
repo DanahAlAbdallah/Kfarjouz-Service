@@ -1,0 +1,62 @@
+<section class="max-w-5xl mx-auto p-6 grid md:grid-cols-2 gap-10">
+
+  <!-- Contact Details -->
+  <div class="space-y-4">
+    <h2 class="text-2xl font-bold">Contact Us</h2>
+
+    <p class="text-gray-600">
+      We’re happy to hear from you.
+    </p>
+
+    <div class="space-y-2">
+      <p>📞 <strong>Phone:</strong> +961 70 000 000</p>
+      <p>✉️ <strong>Email:</strong> info@yourwebsite.com</p>
+      <p>📍 <strong>Location:</strong> Kfarjaouz, Lebanon</p>
+    </div>
+  </div>
+
+  <!-- Contact Form -->
+  <div class="bg-white shadow-lg rounded-xl p-6 space-y-4">
+
+    <input
+      type="text"
+      placeholder="Your Name"
+      [value]="name()"
+      (input)="name.set($any($event.target).value)"
+      class="w-full border rounded-lg p-3"
+    />
+
+    <input
+      type="email"
+      placeholder="Your Email"
+      [value]="email()"
+      (input)="email.set($any($event.target).value)"
+      class="w-full border rounded-lg p-3"
+    />
+
+    <input
+      type="text"
+      placeholder="Phone (optional)"
+      [value]="phone()"
+      (input)="phone.set($any($event.target).value)"
+      class="w-full border rounded-lg p-3"
+    />
+
+    <textarea
+      rows="4"
+      placeholder="Your Message (min 10 characters)"
+      [value]="message()"
+      (input)="message.set($any($event.target).value)"
+      class="w-full border rounded-lg p-3"
+    ></textarea>
+
+    <button
+      (click)="submit()"
+      [disabled]="!formValid()"
+      class="w-full bg-orange-500 text-white py-3 rounded-lg disabled:opacity-50"
+    >
+      Send Message
+    </button>
+
+  </div>
+</section>

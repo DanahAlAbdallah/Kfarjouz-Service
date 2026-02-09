@@ -3,6 +3,12 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+  html {
+    font-family: 'Roboto', system-ui, sans-serif;
+  }
+}
+
 
 :root {
   --primary-orange: #F97316;
@@ -15,3 +21,5 @@
   --muted-text: #6B7280;
   --border-gray: #E5E7EB;
 }
+
+
