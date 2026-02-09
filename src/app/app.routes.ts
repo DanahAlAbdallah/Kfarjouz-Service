@@ -4,6 +4,7 @@ import { ServicesListComponent } from './pages/services/service-list.component';
 import { ServiceDetailsComponent } from './pages/services/service-details/service-details.component';
 import { HomeComponent } from './pages/home/home.component';
 import { ContactUsComponent } from './pages/contact-us/contact-us.component';
+import { AboutUsComponent } from './pages/about-us/about-us.component';
 
 export const routes: Routes = [
   {
@@ -11,16 +12,20 @@ export const routes: Routes = [
     component: MainLayoutComponent,
     children: [
 
-      // Home / Landing Page
+      // HOME
       { path: '', component: HomeComponent },
 
-      // Services list (with category filter)
+      // SERVICE LIST
       { path: 'services', component: ServicesListComponent },
 
-      // Service details
+      // SERVICE DETAILS
       { path: 'services/:id', component: ServiceDetailsComponent },
 
+      // CONATACT US
       { path: 'contact', component: ContactUsComponent },
+
+      // ABOUT US
+      { path: 'about', component: AboutUsComponent },
     ]
   }
 ];
