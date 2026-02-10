@@ -12,11 +12,6 @@ import { SearchBarComponent } from '../../shared/search-bar/search-bar.component
 })
 export class HomeComponent {
   searchQuery = signal('');
-    constructor() {
-    effect(() => {
-      console.log('Search query:', this.searchQuery());
-    });
-  }
 
   services = [
     { name: 'Food & Drink', category: 'food' },
@@ -28,7 +23,7 @@ export class HomeComponent {
   filteredServices = computed(() =>
     this.services.filter(service =>
       service.name.toLowerCase().includes(this.searchQuery().toLowerCase())
-      
+
     )
   );
 }

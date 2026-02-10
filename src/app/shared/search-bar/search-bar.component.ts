@@ -1,14 +1,13 @@
-import { Component, EventEmitter, Input, Output, WritableSignal } from '@angular/core';
+import { Component, Input, WritableSignal } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { SearchService } from '../../services/search-service';
+import { SearchSignal } from '../../signals/search.signal';
 
 @Component({
   selector: 'app-search-bar',
   standalone: true,
   imports: [CommonModule],
-  templateUrl: './search-bar.component.html'
+  templateUrl: './search-bar.component.html',
 })
 export class SearchBarComponent {
-  constructor(public searchService: SearchService) {}
-      @Input() searchText!: WritableSignal<string>;
+   constructor(public searchSignal: SearchSignal) {}
 }

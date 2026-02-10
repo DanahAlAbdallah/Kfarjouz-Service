@@ -1,5 +1,2 @@
-
 <app-hero (scrollToServices)="services.scrollIntoView()"></app-hero>
-<app-services-preview #services></app-services-preview>
-
-<!-- <app-cta></app-cta> -->
+<app-services-preview [searchText]="searchQuery" #services></app-services-preview>

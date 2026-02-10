@@ -1,18 +1,17 @@
 import { CommonModule } from '@angular/common';
-import { Component, computed, ElementRef, OnInit, signal, ViewChild } from '@angular/core';
+import { Component, computed, ElementRef, Input, OnInit, signal, ViewChild, WritableSignal } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { SearchService } from '../../services/search-service';
 import { Service } from '../../models/service.model';
 
 @Component({
   selector: 'app-services-preview',
   standalone: true,
-  imports: [CommonModule,RouterModule], 
+  imports: [CommonModule, RouterModule],
   templateUrl: './services-preview.component.html'
 })
-export class ServicesPreviewComponent implements OnInit{
+export class ServicesPreviewComponent {
 
- services = signal<Service[]>([
+  services = signal<Service[]>([
     {
       title: 'Public professions and services',
       icon: 'assets/icons/food.svg',
@@ -42,22 +41,23 @@ export class ServicesPreviewComponent implements OnInit{
 
   @ViewChild('servicesSection') section!: ElementRef;
 
-scrollIntoView() {
-  this.section.nativeElement.scrollIntoView({ behavior: 'smooth' });
-}
-
-  
-  filteredServices = computed(() =>
-  this.services().filter(service =>
-    this.searchService.searchQuery()
-      ? service.title.toLowerCase().includes(this.searchService.searchQuery().toLowerCase()) ||
-        (service.category.toLowerCase().includes(this.searchService.searchQuery().toLowerCase())) ||
-        (service.city?.toLowerCase() ?? '').includes(this.searchService.searchQuery().toLowerCase())
-      : true
-  )
-);
-  constructor(private searchService: SearchService) {}
-
-  ngOnInit(): void {
+  scrollIntoView() {
+    this.section.nativeElement.scrollIntoView({ behavior: 'smooth' });
   }
+
+
+  @Input({ required: true }) searchText!: WritableSignal<string>;
+
+
+  filteredServices = computed(() => {
+    const query = this.searchText().toLowerCase();
+
+    if (!query) return this.services();
+
+    return this.services().filter(service =>
+      service.title.toLowerCase().includes(query) ||
+      service.category.toLowerCase().includes(query) ||
+      (service.city?.toLowerCase() ?? '').includes(query)
+    );
+  });
 }
