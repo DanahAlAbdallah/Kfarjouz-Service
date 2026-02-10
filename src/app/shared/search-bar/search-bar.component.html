@@ -1,33 +1,21 @@
-<div class="w-full flex justify-center mt-8 px-4">
+<div class="w-full flex justify-center mt-8 ">
   <div class="flex w-full max-w-xl overflow-hidden rounded-3xl shadow-lg border border-gray-200">
-    
+
     <!-- Input -->
-    <input
-      type="text"
-      [value]="searchText()"
-      (input)="searchText.set($any($event.target).value)"
+    <input type="text"  type="text"
+  [value]="searchSignal.searchQuery()"
+  (input)="searchSignal.searchQuery.set($any($event.target).value)"
       placeholder="Search for products, services..."
-      class="flex-1 px-5 py-3 text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-transparent transition"
-    />
+      class="flex-1 px-5 py-3 text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-transparent transition" />
 
     <!-- Search Button -->
     <button
       class="flex items-center justify-center px-5 bg-orange-500 hover:bg-orange-600 transition-colors duration-200 rounded-r-3xl"
-      aria-label="Search"
-    >
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        class="h-5 w-5 text-white"
-        fill="none"
-        viewBox="0 0 24 24"
-        stroke="currentColor"
-        stroke-width="2"
-      >
-        <path
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          d="M21 21l-4.35-4.35m0 0A7 7 0 1110 10a7 7 0 016.65 6.65z"
-        />
+      aria-label="Search">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-white" fill="none" viewBox="0 0 24 24"
+        stroke="currentColor" stroke-width="2">
+        <path stroke-linecap="round" stroke-linejoin="round"
+          d="M21 21l-4.35-4.35m0 0A7 7 0 1110 10a7 7 0 016.65 6.65z" />
       </svg>
     </button>
 
