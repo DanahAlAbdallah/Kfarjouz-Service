@@ -1,8 +1,8 @@
 export interface Service {
-  id?: string;
+  id?: number;
   title: string;
   category: string
-  city?: 'Kfarjouz';
+  city?: string;
   description?: string;
   phone?: string;
   image?: string;
