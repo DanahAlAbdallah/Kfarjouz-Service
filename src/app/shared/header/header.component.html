@@ -7,12 +7,40 @@
     </a>
 
     <!-- Menu -->
-    <nav class="hidden md:flex gap-6 text-gray-700">
-      <a routerLink="/" class="hover:text-orange-500 cursor-pointer">Home</a>
-      <a routerLink="/about" class="hover:text-orange-500 cursor-pointer">About</a>
-      <a routerLink="/services" class="hover:text-orange-500 cursor-pointer">Services</a>
-      <a routerLink="/contact" class="hover:text-orange-500 cursor-pointer">Contact</a>
-    </nav>
+   <nav class="hidden md:flex gap-6 text-gray-700">
+  <a 
+    routerLink="/" 
+    routerLinkActive="text-orange-500 font-semibold"
+    [routerLinkActiveOptions]="{ exact: true }"
+    class="hover:text-orange-500 cursor-pointer transition"
+  >
+    Home
+  </a>
+
+  <a 
+    routerLink="/about" 
+    routerLinkActive="text-orange-500 font-semibold"
+    class="hover:text-orange-500 cursor-pointer transition"
+  >
+    About
+  </a>
+
+  <a 
+    routerLink="/services" 
+    routerLinkActive="text-orange-500 font-semibold"
+    class="hover:text-orange-500 cursor-pointer transition"
+  >
+    Services
+  </a>
+
+  <a 
+    routerLink="/contact" 
+    routerLinkActive="text-orange-500 font-semibold"
+    class="hover:text-orange-500 cursor-pointer transition"
+  >
+    Contact
+  </a>
+</nav>
 
     <!-- CTA -->
     <button
