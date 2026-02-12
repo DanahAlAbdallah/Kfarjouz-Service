@@ -11,4 +11,6 @@ import { SearchSignal } from '../../signals/search.signal';
 })
 export class SearchBarComponent {
  constructor(public searchService: SearchSignal) {}
+
+ 
 }

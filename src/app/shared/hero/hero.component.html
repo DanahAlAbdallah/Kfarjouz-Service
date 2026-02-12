@@ -3,9 +3,9 @@
 
     <!-- Left content -->
     <div>
-      <p class="text-orange-500 font-semibold mb-3">
+      <!-- <p class="text-orange-500 font-semibold mb-3">
         Services in Your Area
-      </p>
+      </p> -->
 
       <h1 class="text-4xl md:text-5xl font-bold text-gray-900 leading-tight mb-6">
         Reliable Services <br />
@@ -13,9 +13,8 @@
       </h1>
 
      <!-- <p class="text-gray-600 mb-8 max-w-lg"> -->
-<div class="relative w-full max-w-lg mx-auto">
+<div class="relative w-full max-w-lg">
   <app-search-bar></app-search-bar>
-
   <ul
     *ngIf="searchService.searchQuery() && filteredServices().length > 0"
     class="absolute z-50 mt-1 w-full bg-white border border-gray-300 rounded-md shadow-lg overflow-y-auto max-h-64"
