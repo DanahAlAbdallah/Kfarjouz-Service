@@ -1,7 +1,7 @@
 <section class="bg-[#FFF7ED] py-24">
   <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
 
-    <!-- Left content -->
+    <!-- LEFT CONTENT-->
     <div>
       <!-- <p class="text-orange-500 font-semibold mb-3">
         Services in Your Area
@@ -12,45 +12,41 @@
         Right at Your Doorstep
       </h1>
 
-     <!-- <p class="text-gray-600 mb-8 max-w-lg"> -->
-<div class="relative w-full max-w-lg">
-  <app-search-bar></app-search-bar>
-  <ul
-    *ngIf="searchService.searchQuery() && filteredServices().length > 0"
-    class="absolute z-50 mt-1 w-full bg-white border border-gray-300 rounded-md shadow-lg overflow-y-auto max-h-64"
-  >
-    <li
-      *ngFor="let service of filteredServices()"
-      class="px-4 py-2 hover:bg-orange-100 cursor-pointer"
-    >
-      <a [routerLink]="['/service', service.id]" class="flex justify-between items-center">
-        <span class="font-medium text-gray-700">{{ service.title }}</span>
-        <span class="text-sm text-gray-500">{{ service.category }}</span>
-      </a>
-    </li>
-  </ul>
+      <div class="relative w-full max-w-lg">
+        <app-search-bar></app-search-bar>
+        <ul *ngIf="searchService.searchQuery() && filteredServices().length > 0"
+        class="absolute top-full left-0 z-50 w-full
+       bg-white border border-orange-100
+       rounded-xl shadow-xl
+       overflow-y-auto max-h-64"
+>
+          <li *ngFor="let service of filteredServices()" class="px-4 py-2 hover:bg-orange-100 cursor-pointer">
+            <a [routerLink]="['/service', service.id]" class="flex justify-between items-center">
+              <span class="font-medium text-gray-700">{{ service.title }}</span>
+              <span class="text-sm text-gray-500">{{ service.category }}</span>
+            </a>
+          </li>
+        </ul>
 
-  <div
-    *ngIf="searchService.searchQuery() && filteredServices().length === 0"
-    class="absolute z-50 mt-1 w-full bg-white border border-gray-300 rounded-md shadow-lg px-4 py-2 text-gray-500"
-  >
-    No services found
-  </div>
+       <div *ngIf="searchService.searchQuery() && filteredServices().length === 0"
+     class="absolute top-full left-0 z-50 w-full
+            bg-white border border-orange-100
+            rounded-xl shadow-xl
+            px-4 py-2 text-gray-500">
+  No services found
 </div>
 
 
+      </div>
 
-<!-- </p> -->
-
-
+      <!-- EXPLORE SERVICES BUTTON -->
       <div class="flex gap-4">
         <button (click)="scrollToServices.emit()"
           class="bg-orange-500 text-white px-6 py-3 rounded-md font-semibold hover:bg-orange-600 transition">
           Explore Services
         </button>
 
-
-
+        <!-- CONTACT US BUTTON -->
         <button routerLink="/contact"
           class="border border-orange-500 text-orange-500 px-6 py-3 rounded-md font-semibold hover:bg-orange-100 transition">
           Contact Us
@@ -58,7 +54,7 @@
       </div>
     </div>
 
-    <!-- Right image -->
+    <!-- RIGHT CONTENT/ image -->
     <div class="flex justify-center">
       <img src="assets/GIF/Location-Search4.gif" alt="Local services illustration" class="max-w-md w-full" />
     </div>
