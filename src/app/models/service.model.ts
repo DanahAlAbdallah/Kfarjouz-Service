@@ -6,7 +6,9 @@ export interface Service {
   description?: string;
   phone?: string;
   image?: string;
+  location?:string;
   icon?:string;
   ownerId?: string;
   createdAt?: Date;
+
 }
