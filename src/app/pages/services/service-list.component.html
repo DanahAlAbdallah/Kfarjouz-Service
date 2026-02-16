@@ -1,7 +1,29 @@
-
+<!-- Service Cards -->
 <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-  <div *ngFor="let service of filteredServices()" class="bg-white rounded-xl p-6 shadow-sm hover:shadow-lg transition">
+  <div
+    *ngFor="let service of filteredServices()"
+    (click)="selectService(service)"
+    class="bg-white rounded-xl p-6 shadow-sm hover:shadow-lg transition cursor-pointer"
+  >
     <h3 class="text-lg font-semibold mb-1">{{ service.title }}</h3>
     <p class="text-sm text-gray-500">{{ service.category }} · {{ service.location }}</p>
+  </div>
+</div>
+
+<!-- Service Detail Modal -->
+<div
+  *ngIf="selectedService()"
+  class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4"
+>
+  <div class="bg-white rounded-xl p-6 w-full max-w-md relative">
+    <button
+      (click)="closeDetail()"
+      class="absolute top-2 right-2 text-gray-500 hover:text-gray-800"
+    >
+      ✕
+    </button>
+    <h2 class="text-xl font-bold mb-2">{{ selectedService()!.title }}</h2>
+    <p class="text-sm text-gray-500 mb-4">{{ selectedService()!.category }} · {{ selectedService()!.location }}</p>
+    <p>{{ selectedService()!.description }}</p>
   </div>
 </div>
