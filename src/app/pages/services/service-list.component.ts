@@ -2,30 +2,40 @@ import { Component, computed, signal, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
 import { servicesSignal } from '../../signals/services.signal';
+import { PaginationComponent } from '../../shared/pagination/pagination.component';
 
 @Component({
   selector: 'app-services-list',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule,PaginationComponent],
   templateUrl: './service-list.component.html',
 })
 export class ServicesListComponent implements OnInit {
-  // base services
   services = servicesSignal;
-
-  // selected category
   selectedCategory = signal<string>('all');
-
-  // selected service (for detail modal)
   selectedService = signal<any | null>(null);
 
-  // filtered services
+  // pagination
+  currentPage = signal(1);
+  pageSize = 12; // number of cards per page
+
+  // filtered services based on category
   filteredServices = computed(() => {
     const category = this.selectedCategory();
-    if (category === 'all') {
-      return this.services();
-    }
+    if (category === 'all') return this.services();
     return this.services().filter(s => s.category === category);
+  });
+
+  // paginated services
+paginatedServices = computed(() => {
+  const start = (this.currentPage() - 1) * this.pageSize;
+  const end = start + this.pageSize;
+  return this.filteredServices().slice(start, end);
+});
+
+  // total pages
+  totalPages = computed(() => {
+    return Math.ceil(this.filteredServices().length / this.pageSize);
   });
 
   constructor(private route: ActivatedRoute) {}
@@ -36,13 +46,16 @@ export class ServicesListComponent implements OnInit {
     });
   }
 
-  // When clicking a card
   selectService(service: any) {
     this.selectedService.set(service);
   }
 
-  // Close modal
   closeDetail() {
     this.selectedService.set(null);
+  }
+
+  // method to change page from pagination component
+  changePage(page: number) {
+    this.currentPage.set(page);
   }
 }
