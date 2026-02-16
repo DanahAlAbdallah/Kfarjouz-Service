@@ -1,4 +1,5 @@
 <div class="flex justify-center items-center mt-6 space-x-2">
+  <!-- Previous Button -->
   <button
     (click)="prevPage()"
     [disabled]="currentPage === 1"
@@ -7,17 +8,19 @@
     Prev
   </button>
 
-  <ng-container *ngFor="let page of [].constructor(totalPages); let i = index">
+  <!-- Page Numbers -->
+  <ng-container *ngFor="let page of pages">
     <button
-      (click)="goToPage(i + 1)"
-      [class.bg-blue-500]="currentPage === i + 1"
-      [class.text-white]="currentPage === i + 1"
+      (click)="goToPage(page)"
+      [class.bg-blue-500]="currentPage === page"
+      [class.text-white]="currentPage === page"
       class="px-3 py-1 bg-gray-200 rounded"
     >
-      {{ i + 1 }}
+      {{ page }}
     </button>
   </ng-container>
 
+  <!-- Next Button -->
   <button
     (click)="nextPage()"
     [disabled]="currentPage === totalPages"
